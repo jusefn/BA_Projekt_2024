@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppClassLibrary.Enums
+namespace wpf.interfaces
 {
-    public enum ContentTypeEnum
+    public interface IContentProvider
     {
-        NOTES,
-        CALCULATOR
+        string GetContent();
+        void SetContent(string content);
     }
 }

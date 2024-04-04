@@ -6,14 +6,23 @@
         xmlns:local="clr-namespace:wpf" xmlns:tabItems="clr-namespace:wpf.tabItems"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TabControl>
-            <TabItem Header="Tab 1">
-                <tabItems:Tables/>
-            </TabItem>
-            <TabItem Header="Tab 2">
-                <tabItems:Notes/>
-            </TabItem>
-        </TabControl>
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open" Click="Open_Click"/>
+                <MenuItem Header="_Save" Click="Save_Click"/>
+                <MenuItem Header="_Close" Click="Close_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <TabControl x:Name="tabs">
+                <TabItem Header="Notes" x:Name="notes">
+                    <tabItems:Notes/>
+                </TabItem>
+                <TabItem Header="Calculator" x:Name="calculator">
+                    <tabItems:Calculator/>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
 </Window>

@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="This is the content of Tab 2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+        <RichTextBox FontSize="24" x:Name="textBox"/>
     </Grid>
 </UserControl>

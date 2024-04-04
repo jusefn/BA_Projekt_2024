@@ -1,28 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.ComponentModel;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using wpf.interfaces;
 
 namespace wpf.tabItems
 {
     /// <summary>
     /// Interaction logic for Notes.xaml
     /// </summary>
-    public partial class Notes : UserControl
+    public partial class Notes : UserControl, IContentProvider
     {
+
         public Notes()
         {
             InitializeComponent();
+        }
+
+        public string GetContent()
+        {
+            TextRange textRange = new TextRange(textBox.Document.ContentStart, textBox.Document.ContentEnd);
+            return textRange.Text;
+        }
+
+        public void SetContent(string content)
+        {
+            textBox.Document.Blocks.Clear();
+            textBox.Document.Blocks.Add(new Paragraph(new Run(content)));
         }
     }
 }

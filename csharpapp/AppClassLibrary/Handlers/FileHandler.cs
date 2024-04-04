@@ -5,10 +5,10 @@ using AppClassLibrary.Models;
 
 namespace AppClassLibrary.Handlers
 {
-    public class FileHandler
+    public static class FileHandler
     {
 
-        public void SaveFile(string content, string path, ContentTypeEnum type)
+        public static void SaveFile(string content, string path, ContentTypeEnum type)
         {
             FileObject fileObject = new FileObject();
             fileObject.ContentType = type;
@@ -16,7 +16,7 @@ namespace AppClassLibrary.Handlers
             SaveToFS(fileObject, path);
         }
 
-        private void SaveToFS(FileObject fileObject, string path)
+        private static void SaveToFS(FileObject fileObject, string path)
         {
             using (var stream = File.Open(path, FileMode.Create))
             {
@@ -27,7 +27,7 @@ namespace AppClassLibrary.Handlers
             }
         }
 
-        public string LoadFile(string path, ContentTypeEnum type)
+        public static string LoadFile(string path, ContentTypeEnum type)
         {
             FileObject fileObject = LoadFromFS(path);
             if(fileObject.ContentType != type)
@@ -41,7 +41,7 @@ namespace AppClassLibrary.Handlers
             return fileObject.Content;
         }
 
-        private FileObject LoadFromFS(string path)
+        private static FileObject LoadFromFS(string path)
         {
             if (File.Exists(path))
             {
