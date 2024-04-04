@@ -8,16 +8,53 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <TextBox FontSize="24" x:Name="textBox" Grid.Row="0" Grid.Column="0"/>
-        <Button Grid.Row="0" Grid.Column="1" Margin="2" Content="Calculate"></Button>
+
+        <TextBox FontSize="24" IsReadOnly="True" x:Name="calcField" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <Button Grid.Row="0" Grid.Column="3" Margin="2" Content="Calculate" x:Name="calculateButton" Click="calculateButton_Click"></Button>
+        <TextBox FontSize="18" IsReadOnly="True" x:Name="historyField" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Button Content="1" Grid.Row="0" Grid.Column="0" Padding="10" Click="Number_Click"/>
+            <Button Content="2" Grid.Row="0" Grid.Column="1" Padding="10" Click="Number_Click"/>
+            <Button Content="3" Grid.Row="0" Grid.Column="2" Padding="10" Click="Number_Click"/>
+            <Button Content="4" Grid.Row="1" Grid.Column="0" Padding="10" Click="Number_Click"/>
+            <Button Content="5" Grid.Row="1" Grid.Column="1" Padding="10" Click="Number_Click"/>
+            <Button Content="6" Grid.Row="1" Grid.Column="2" Padding="10" Click="Number_Click"/>
+            <Button Content="7" Grid.Row="2" Grid.Column="0" Padding="10" Click="Number_Click"/>
+            <Button Content="8" Grid.Row="2" Grid.Column="1" Padding="10" Click="Number_Click"/>
+            <Button Content="9" Grid.Row="2" Grid.Column="2" Padding="10" Click="Number_Click"/>
+            <Button Content="0" Grid.Row="3" Grid.Column="1" Padding="10" Click="Number_Click"/>
+
+
+            <Button Content="+" Grid.Row="0" Grid.Column="3" Padding="10" Click="Operator_Click"/>
+            <Button Content="-" Grid.Row="1" Grid.Column="3" Padding="10" Click="Operator_Click"/>
+            <Button Content="*" Grid.Row="2" Grid.Column="3" Padding="10" Click="Operator_Click"/>
+            <Button Content="/" Grid.Row="3" Grid.Column="3" Padding="10" Click="Operator_Click"/>
+
+
+            <Button Content="C" Grid.Row="3" Grid.Column="0" Padding="10"/>
+        </Grid>
     </Grid>
 </UserControl>
