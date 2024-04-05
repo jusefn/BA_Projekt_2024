@@ -73,7 +73,7 @@ namespace wpf.tabItems
             long result = 0;
             if(_firstOperand == null || _secondOperand == null)
             {
-                var msgBox = MessageBoxManager.GetMessageBoxStandard("Operands can not be empty.", "Error Calculating",
+                var msgBox = MessageBoxManager.GetMessageBoxStandard("Error", "Operands can not be empty.",
                     ButtonEnum.Ok, Icon.Error);
                 await msgBox.ShowAsync();
 
@@ -92,7 +92,16 @@ namespace wpf.tabItems
                         result = (long)(_firstOperand * _secondOperand);
                         break;
                     case ("/"):
-                        result = (long)(_firstOperand / _secondOperand);
+                        try
+                        {
+                            result = (long)(_firstOperand / _secondOperand);
+                        }
+                        catch(DivideByZeroException divException)
+                        {
+                            var msgBox = MessageBoxManager.GetMessageBoxStandard("Error", "Divide by Zero Error.",
+                        ButtonEnum.Ok, Icon.Error);
+                            await msgBox.ShowAsync();
+                        }
                         break;
                     default:
                         break;

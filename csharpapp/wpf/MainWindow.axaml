@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf" xmlns:tabItems="clr-namespace:wpf.tabItems"
         mc:Ignorable="d"
-        Title="Simple Application" Height="450" Width="800">
+        Title="Simple Application" Height="285" Width="300" CanResize="False">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
