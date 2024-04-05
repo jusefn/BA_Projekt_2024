@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows.Documents;
+﻿using Avalonia.Controls;
+using Avalonia.Controls.Documents;
+using Avalonia.Media.TextFormatting;
 using wpf.interfaces;
 
 namespace wpf.tabItems
@@ -18,14 +18,12 @@ namespace wpf.tabItems
 
         public string GetContent()
         {
-            TextRange textRange = new TextRange(textBox.Document.ContentStart, textBox.Document.ContentEnd);
-            return textRange.Text;
+            return textBox.Document.Text;
         }
 
         public void SetContent(string content)
         {
-            textBox.Document.Blocks.Clear();
-            textBox.Document.Blocks.Add(new Paragraph(new Run(content)));
+            textBox.Document.Text = content;
         }
     }
 }

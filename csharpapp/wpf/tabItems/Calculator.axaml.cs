@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Text;
-using System.Windows.Controls;
-using System.Windows;
 using wpf.interfaces;
 using System;
-using System.Windows.Documents;
+using Avalonia.Controls;
+using Avalonia.Interactivity;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 
 namespace wpf.tabItems
 {
@@ -27,7 +28,9 @@ namespace wpf.tabItems
 
         public string GetContent()
         {
-            return historyField.Text;
+            if (historyField.Text != null) return historyField.Text;
+
+            return "";
         }
 
         public void SetContent(string content)
@@ -45,32 +48,35 @@ namespace wpf.tabItems
         private void Number_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender; // Cast sender to Button
-            _stringBuilder.Append(button.Content.ToString()); // Get the content of the clicked button
+            _stringBuilder.Append(button.Content?.ToString()); // Get the content of the clicked button
             calcField.Text = _stringBuilder.ToString();
             if(_firstOperand != null)
             {
-                _secondOperand = Convert.ToInt64(button.Content.ToString());
+                _secondOperand = Convert.ToInt64(button.Content?.ToString());
             }
             else
             {
-               _firstOperand = Convert.ToInt64(button.Content.ToString());
+               _firstOperand = Convert.ToInt64(button.Content?.ToString());
             }
         }
 
         private void Operator_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender; // Cast sender to Button
-            _stringBuilder.Append(button.Content.ToString()); // Get the content of the clicked button
+            _stringBuilder.Append(button.Content?.ToString()); // Get the content of the clicked button
             calcField.Text = _stringBuilder.ToString();
-            _operatorString = button.Content.ToString();
+            _operatorString = button.Content?.ToString();
         }
 
-        private void calculateButton_Click(object sender, RoutedEventArgs e)
+        private async void calculateButton_Click(object sender, RoutedEventArgs e)
         {
             long result = 0;
             if(_firstOperand == null || _secondOperand == null)
             {
-                MessageBox.Show("Operands can not be empty.", "Error Calculating", MessageBoxButton.OK, MessageBoxImage.Error);
+                var msgBox = MessageBoxManager.GetMessageBoxStandard("Operands can not be empty.", "Error Calculating",
+                    ButtonEnum.Ok, Icon.Error);
+                await msgBox.ShowAsync();
+
             }
             else
             {
@@ -92,7 +98,7 @@ namespace wpf.tabItems
                         break;
                 }
             }
-            historyField.AppendText(_stringBuilder.ToString()+"="+result+'\n');
+            historyField.Text += _stringBuilder.ToString()+"="+result+'\n';
             _stringBuilder.Clear();
             _stringBuilder.Append(result);
             calcField.Text = _stringBuilder.ToString();
